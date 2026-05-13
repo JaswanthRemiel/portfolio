@@ -1,26 +1,84 @@
-"use client"
+﻿"use client"
 
-import { useEffect, useState } from "react"
+import { useCallback, useRef, useState, useEffect } from "react"
 import { Moon, Sun } from "lucide-react"
+import { flushSync } from "react-dom"
 import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
 
 export const AnimatedThemeToggler = ({
   className,
+  duration = 400,
   ...props
-}: React.ComponentPropsWithoutRef<"button">) => {
+}: React.ComponentPropsWithoutRef<"button"> & { duration?: number }) => {
   const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  const toggleTheme = useCallback(() => {
+    const button = buttonRef.current
+    if (!button) return
+
+    const viewportWidth = window.visualViewport?.width ?? window.innerWidth
+    const viewportHeight = window.visualViewport?.height ?? window.innerHeight
+
+    const { top, left, width, height } = button.getBoundingClientRect()
+    const x = left + width / 2
+    const y = top + height / 2
+
+    const maxRadius = Math.hypot(
+      Math.max(x, viewportWidth - x),
+      Math.max(y, viewportHeight - y)
+    )
+
+    const applyTheme = () => {
+      setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
+
+    if (typeof document.startViewTransition !== "function") {
+      applyTheme()
+      return
+    }
+
+    const root = document.documentElement
+    root.style.setProperty(
+      "--magicui-theme-toggle-vt-duration",
+      `${duration}ms`
+    )
+
+    const transition = document.startViewTransition(() => {
+      flushSync(applyTheme)
+    })
+
+    if (transition?.ready && typeof transition.ready.then === "function") {
+      transition.ready.then(() => {
+        const clipPath = [
+          `circle(0px at ${x}px ${y}px)`,
+          `circle(${maxRadius}px at ${x}px ${y}px)`,
+        ]
+        document.documentElement.animate(
+          { clipPath },
+          {
+            duration,
+            easing: "ease-in-out",
+            fill: "forwards",
+            pseudoElement: "::view-transition-new(root)",
+          }
+        )
+      })
+    }
+  }, [resolvedTheme, setTheme, duration])
+
   return (
     <button
+      ref={buttonRef}
       type="button"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={toggleTheme}
       className={cn(
         "relative inline-flex h-8 w-8 items-center justify-center rounded-md",
         "text-muted-foreground hover:text-foreground",
@@ -34,26 +92,11 @@ export const AnimatedThemeToggler = ({
       {...props}
     >
       {mounted ? (
-        <>
-          <Sun
-            className={cn(
-              "h-[1.1rem] w-[1.1rem] transition-all duration-300",
-              resolvedTheme === "dark"
-                ? "rotate-0 scale-100 opacity-100"
-                : "-rotate-90 scale-0 opacity-0"
-            )}
-            style={{ position: "absolute" }}
-          />
-          <Moon
-            className={cn(
-              "h-[1.1rem] w-[1.1rem] transition-all duration-300",
-              resolvedTheme === "dark"
-                ? "rotate-90 scale-0 opacity-0"
-                : "rotate-0 scale-100 opacity-100"
-            )}
-            style={{ position: "absolute" }}
-          />
-        </>
+        resolvedTheme === "dark" ? (
+          <Sun className="h-[1.1rem] w-[1.1rem]" />
+        ) : (
+          <Moon className="h-[1.1rem] w-[1.1rem]" />
+        )
       ) : (
         <div className="h-[1.1rem] w-[1.1rem]" />
       )}
