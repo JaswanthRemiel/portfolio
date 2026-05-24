@@ -11,28 +11,39 @@ export interface MediumArticle {
 
 const MEDIUM_USERNAME = "jaswanthremiel"; // Change this to your Medium username
 
+// Cache for Medium articles in memory
+let cachedArticles: MediumArticle[] | null = null;
+let lastFetchTime = 0;
+const CACHE_DURATION = 3600000; // 1 hour in milliseconds
+
 export async function fetchMediumArticles(): Promise<MediumArticle[]> {
+  // Return cached articles if fresh
+  if (cachedArticles && Date.now() - lastFetchTime < CACHE_DURATION) {
+    return cachedArticles;
+  }
+
   try {
     const feedUrl = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
 
     const response = await fetch(apiUrl, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
+      next: { revalidate: 3600 }, // ISR cache for 1 hour
+      signal: AbortSignal.timeout(10000), // 10 second timeout
     });
 
     if (!response.ok) {
       console.error(`RSS2JSON API error: ${response.status} ${response.statusText}`);
-      return [];
+      return cachedArticles || [];
     }
 
     const data = await response.json();
 
     if (!data.items || !Array.isArray(data.items)) {
       console.warn("No items found in RSS feed response");
-      return [];
+      return cachedArticles || [];
     }
 
-    return data.items.map((item: any) => {
+    const articles = data.items.map((item: any) => {
       // Extract thumbnail from description or content
       let thumbnail = null;
       const descThumbnail = item.description?.match(/<img[^>]+src="([^">]+)"/);
@@ -59,6 +70,12 @@ export async function fetchMediumArticles(): Promise<MediumArticle[]> {
         content: item.content || "",
       };
     });
+
+    // Update cache
+    cachedArticles = articles;
+    lastFetchTime = Date.now();
+    
+    return articles;
   } catch (error) {
     console.error("Error fetching Medium articles:", error instanceof Error ? error.message : String(error));
     return [];

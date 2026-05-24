@@ -151,6 +151,8 @@ function ProjectCard({
   );
 }
 
+export const revalidate = 3600; 
+
 export default async function ProjectsPage() {
   const data = await getDetails();
   const projects = (data.projects as Project[]) || [];

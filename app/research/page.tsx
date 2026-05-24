@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import Markdown from "react-markdown";
 import { getDetails } from "@/lib/data";
 import ContactSection from "@/components/contact";
@@ -60,6 +60,8 @@ function ResearchItem({ href, title, description, dates, technologies }: Researc
         </div>
     );
 }
+
+export const revalidate = 3600; // ISR: revalidate every hour
 
 export default async function ResearchPage() {
     const data = await getDetails();
