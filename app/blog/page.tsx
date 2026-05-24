@@ -2,10 +2,10 @@ import { Suspense } from "react";
 import { getAllPosts, getAllTags, getTagCounts } from "@/lib/blog";
 import { BlogContent } from "@/components/blog-content";
 
-export default function BlogPage() {
-  const posts = getAllPosts();
-  const tags = getAllTags();
-  const tagCounts = getTagCounts();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
+  const tags = await getAllTags();
+  const tagCounts = await getTagCounts();
 
   return (
     <Suspense>

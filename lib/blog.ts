@@ -1,17 +1,7 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import { fetchMediumArticles, MediumArticle } from "./medium";
 
-const postsDirectory = path.join(process.cwd(), "content/blog");
-
-export interface BlogPost {
+export interface BlogPost extends MediumArticle {
   slug: string;
-  title: string;
-  date: string;
-  description: string;
-  tags?: string[];
-  featured?: boolean;
-  content: string;
 }
 
 export interface BlogPostMeta {
@@ -21,68 +11,66 @@ export interface BlogPostMeta {
   description: string;
   tags?: string[];
   featured?: boolean;
+  href?: string;
+  thumbnail?: string;
+  link: string;
 }
 
-export function getAllPosts(): BlogPostMeta[] {
-  // Create directory if it doesn't exist
-  if (!fs.existsSync(postsDirectory)) {
-    fs.mkdirSync(postsDirectory, { recursive: true });
+export async function getAllPosts(): Promise<BlogPostMeta[]> {
+  try {
+    const articles = await fetchMediumArticles();
+    
+    return articles.map((article, index) => ({
+      slug: `article-${index}`,
+      title: article.title,
+      date: article.pubDate,
+      description: article.description,
+      tags: article.categories || [],
+      featured: index === 0,
+      href: article.link,
+      thumbnail: article.thumbnail,
+      link: article.link,
+    }));
+  } catch (error) {
+    console.error("Error getting blog posts:", error);
     return [];
   }
-
-  const fileNames = fs.readdirSync(postsDirectory);
-  const allPostsData = fileNames
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, "");
-      const fullPath = path.join(postsDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
-
-      return {
-        slug,
-        title: data.title || slug,
-        date: data.date || new Date().toISOString(),
-        description: data.description || "",
-        tags: data.tags || [],
-      };
-    });
-
-  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getPostBySlug(slug: string): BlogPost | null {
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  const posts = await getAllPosts();
+  const postMeta = posts.find((p) => p.slug === slug);
+  
+  if (!postMeta) {
+    return null;
+  }
+
   try {
-    const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
+    const articles = await fetchMediumArticles();
+    const articleIndex = parseInt(slug.split("-")[1]);
+    const article = articles[articleIndex];
+
+    if (!article) {
+      return null;
+    }
 
     return {
       slug,
-      title: data.title || slug,
-      date: data.date || new Date().toISOString(),
-      description: data.description || "",
-      tags: data.tags || [],
-      content,
+      ...article,
     };
-  } catch {
+  } catch (error) {
+    console.error("Error getting post by slug:", error);
     return null;
   }
 }
 
-export function getAllPostSlugs(): string[] {
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
-
-  const fileNames = fs.readdirSync(postsDirectory);
-  return fileNames
-    .filter((fileName) => fileName.endsWith(".mdx"))
-    .map((fileName) => fileName.replace(/\.mdx$/, ""));
+export async function getAllPostSlugs(): Promise<string[]> {
+  const posts = await getAllPosts();
+  return posts.map((post) => post.slug);
 }
 
-export function getAllTags(): string[] {
-  const posts = getAllPosts();
+export async function getAllTags(): Promise<string[]> {
+  const posts = await getAllPosts();
   const tags = new Set<string>();
 
   posts.forEach((post) => {
@@ -94,8 +82,8 @@ export function getAllTags(): string[] {
   return Array.from(tags).sort();
 }
 
-export function getTagCounts(): Record<string, number> {
-  const posts = getAllPosts();
+export async function getTagCounts(): Promise<Record<string, number>> {
+  const posts = await getAllPosts();
   const counts: Record<string, number> = {};
 
   posts.forEach((post) => {
@@ -109,16 +97,11 @@ export function getTagCounts(): Record<string, number> {
   return counts;
 }
 
-export function getPostsByTag(tag: string): BlogPostMeta[] {
-  const posts = getAllPosts();
+export async function getPostsByTag(tag: string): Promise<BlogPostMeta[]> {
+  const posts = await getAllPosts();
   if (tag === "all" || !tag) {
     return posts;
   }
 
   return posts.filter((post) => post.tags && post.tags.includes(tag));
-}
-
-export function getFeaturedPosts(): BlogPostMeta[] {
-  const posts = getAllPosts();
-  return posts.filter((post) => post.featured === true);
 }

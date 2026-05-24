@@ -13,9 +13,9 @@ function getDetailsSync() {
   return data;
 }
 
-export default function Page() {
+export default async function Page() {
   const details = getDetailsSync();
-  const blogPosts = getAllPosts();
+  const blogPosts = await getAllPosts();
 
   return (
     <div className="flex flex-col min-h-screen bg-[#1c1c1c] text-white">
@@ -24,7 +24,7 @@ export default function Page() {
           <Header />
         </div>
         <TabsSection
-          blogPosts={blogPosts}
+          blogPosts={blogPosts.slice(0, 6)}
           research={details.research || []}
           projects={(details.projects || []).slice(0, 6)}
         />

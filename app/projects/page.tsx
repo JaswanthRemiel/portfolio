@@ -20,6 +20,7 @@ import Link from "next/link";
 import Markdown from "react-markdown";
 import { getDetails } from "@/lib/data";
 import { Globe, Github } from "lucide-react";
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 const Icons = {
   Globe: <Globe className="size-3" />,
@@ -158,21 +159,24 @@ export default async function ProjectsPage() {
     <div className="flex flex-col min-h-screen bg-[#1c1c1c] text-white">
       <main className="flex-grow max-w-3xl mx-auto px-10 sm:px-6 py-20 space-y-12 w-full">
 
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                  home
-                </Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator className="text-gray-600" />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="text-white">projects</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
+        <div className="flex items-center justify-between">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
+                    home
+                  </Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator className="text-gray-600" />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="text-white">projects</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+          <AnimatedThemeToggler />
+        </div>
 
         <section className="space-y-7">
           <div className="flex items-start">
