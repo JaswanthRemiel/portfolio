@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { GitHubContributions } from "@/components/github-contributions";
-import { Button } from "@/components/ui/3d-button"
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 
 export function Header() {

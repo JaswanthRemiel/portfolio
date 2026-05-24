@@ -70,15 +70,6 @@ function ResearchItem({
 export function ResearchContent({ research }: ResearchContentProps) {
   return (
     <section className="space-y-7">
-      {/* <div className="flex items-start">
-        <Image
-          src="https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/sign-research.png"
-          alt="Research"
-          width={180}
-          height={180}
-          className="mr-4"
-        />
-      </div> */}
       <div className="space-y-7">
         {research.map((item: Research) => (
           <ResearchItem

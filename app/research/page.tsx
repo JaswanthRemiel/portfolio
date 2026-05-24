@@ -1,7 +1,6 @@
 ﻿import Link from "next/link";
 import Markdown from "react-markdown";
 import { getDetails } from "@/lib/data";
-import ContactSection from "@/components/contact";
 import Image from "next/image";
 import {
     Breadcrumb,
