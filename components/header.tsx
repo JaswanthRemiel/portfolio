@@ -19,8 +19,8 @@ export function Header() {
                 width={82}
                 height={82}
                 className="w-full h-full object-cover scale-[1.3] translate-y-3 md:translate-y-2"
-                suppressHydrationWarning
-                unoptimized
+                priority
+                quality={85}
               />
             </div>
           </div>

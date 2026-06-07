@@ -1,27 +1,5 @@
 ---
 projects:
-  - title: "LinkDescrip AI"
-    href: "https://linkdescrip-ai.remiel.work/"
-    dates: "Sep 2024 - Feb 2025"
-    active: true
-    description: "a web application that helps users generate optimized LinkedIn headlines based on their professional bios. By utilizing the power of natural language processing models, this tool provides catchy and professional headlines to enhance users' LinkedIn profiles."
-    technologies:
-      - "Next.js"
-      - "Typescript"
-      - "Vercel"
-      - "Gemini"
-      - "Shadcn UI"
-      - "Magic UI"
-    links:
-      - type: "Demo"
-        href: "https://linkdescrip-ai.remiel.work/"
-        icon: "Globe"
-      - type: "Source"
-        href: "https://github.remiel.work/linkdescrip-ai/"
-        icon: "Github"
-    image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/linkdescrip.mp4"
-
   - title: "NoteOS"
     href: "https://github.com/JaswanthRemiel/NoteOS"
     dates: "Sep 2024 - Feb 2025"
@@ -80,6 +58,26 @@ projects:
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/vsmediabar.mp4"
 
+  - title: "Gitsush"
+    href: "https://github.remiel.work/gitsush/"
+    dates: "April 2025 - Present"
+    active: true
+    description: "a quirky and efficient CLI tool that wraps git add, commit, and push into a single command. With gshh, you can handle your Git workflow like a sushi chef fast, clean, and with style. Perfect for developers who love automation with a dash of fun."
+    technologies:
+      - "Javascript"
+      - "Github"
+      - "npmjs"
+      - "Git"
+    links:
+      - type: "Website"
+        href: "https://www.npmjs.com/package/gitsush"
+        icon: "Globe"
+      - type: "Source"
+        href: "https://github.remiel.work/gitsush/"
+        icon: "Github"
+    image: ""
+    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/gitsush.mp4"
+
   - title: "RoastHub"
     href: "https://github.com/JaswanthRemiel/RoastHub"
     dates: "Nov 2025"
@@ -100,25 +98,28 @@ projects:
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/roasthub.mp4"
 
-  - title: "Gitsush"
-    href: "https://github.remiel.work/gitsush/"
-    dates: "April 2025 - Present"
+
+  - title: "LinkDescrip AI"
+    href: "https://linkdescrip-ai.remiel.work/"
+    dates: "Sep 2024 - Feb 2025"
     active: true
-    description: "a quirky and efficient CLI tool that wraps git add, commit, and push into a single command. With gshh, you can handle your Git workflow like a sushi chef fast, clean, and with style. Perfect for developers who love automation with a dash of fun."
+    description: "a web application that helps users generate optimized LinkedIn headlines based on their professional bios. By utilizing the power of natural language processing models, this tool provides catchy and professional headlines to enhance users' LinkedIn profiles."
     technologies:
-      - "Javascript"
-      - "Github"
-      - "npmjs"
-      - "Git"
+      - "Next.js"
+      - "Typescript"
+      - "Vercel"
+      - "Gemini"
+      - "Shadcn UI"
+      - "Magic UI"
     links:
-      - type: "Website"
-        href: "https://www.npmjs.com/package/gitsush"
+      - type: "Demo"
+        href: "https://linkdescrip-ai.remiel.work/"
         icon: "Globe"
       - type: "Source"
-        href: "https://github.remiel.work/gitsush/"
+        href: "https://github.remiel.work/linkdescrip-ai/"
         icon: "Github"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/gitsush.mp4"
+    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/linkdescrip.mp4"
 
   - title: "Batmode extension"
     href: "https://github.remiel.work/batmode/"

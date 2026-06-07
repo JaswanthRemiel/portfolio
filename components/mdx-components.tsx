@@ -67,7 +67,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         width={800}
         height={400}
         className="rounded-lg my-6 w-full max-w-full h-auto"
-        suppressHydrationWarning
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+        quality={80}
       />
     ),
     hr: () => <hr className="border-border my-8" />,

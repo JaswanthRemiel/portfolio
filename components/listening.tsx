@@ -67,6 +67,8 @@ export default function ListeningSection() {
                 fill
                 className="object-cover  transition-transform duration-300"
                 priority
+                quality={75}
+                sizes="48px"
               />
             </div>
 

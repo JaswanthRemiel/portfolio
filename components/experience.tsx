@@ -28,7 +28,8 @@ export function ExperienceDemo() {
               width={500}
               height={500}
               className="h-full w-full rounded-lg object-cover shadow-lg "
-              suppressHydrationWarning
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              quality={80}
             />
           </div>
           <div className="mt-4">
@@ -45,7 +46,8 @@ export function ExperienceDemo() {
                 width={500}
                 height={500}
                 className="h-full w-full rounded-lg object-cover shadow-lg"
-                suppressHydrationWarning
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                quality={80}
               />
               <Image
                 src="https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/awwwards2.png"
@@ -53,7 +55,8 @@ export function ExperienceDemo() {
                 width={500}
                 height={500}
                 className="h-full w-full rounded-lg object-cover shadow-lg"
-                suppressHydrationWarning
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                quality={80}
               />
             </div>
           </div>
@@ -122,7 +125,8 @@ export function ExperienceDemo() {
               width={500}
               height={500}
               className="h-full w-full rounded-lg object-cover shadow-lg"
-              suppressHydrationWarning
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              quality={80}
             />
             <Image
               src="https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/microsoft2.png"
@@ -130,7 +134,8 @@ export function ExperienceDemo() {
               width={500}
               height={500}
               className="h-full w-full rounded-lg object-cover shadow-lg"
-              suppressHydrationWarning
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              quality={80}
             />
           </div>
         </div>
