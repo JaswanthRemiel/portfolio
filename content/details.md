@@ -21,7 +21,7 @@ projects:
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/note.mp4"
 
-  - title: "itsGOtime "
+  - title: "itsGOtime"
     href: "https://github.com/JaswanthRemiel/itsGOtime"
     dates: "November 2025 - Present"
     active: true
@@ -77,102 +77,6 @@ projects:
         icon: "Github"
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/gitsush.mp4"
-
-  - title: "RoastHub"
-    href: "https://github.com/JaswanthRemiel/RoastHub"
-    dates: "Nov 2025"
-    active: true
-    description: "a xAI-powered roasting machine for fragile egos - bring thick skin and snacks. Strictly for fun: we auto-generate burns so you don't have to pretend you're witty.Warning: may cause laughter, mild humiliation, and an irresistible urge to clap back."
-    technologies:
-      - "Nextjs"
-      - "Github"
-      - "openrouter"
-      - "xAI"
-    links:
-      - type: "demo"
-        href: "https://github.remiel.work/RoastHub/"
-        icon: "Globe"
-      - type: "Source"
-        href: "https://github.com/JaswanthRemiel/RoastHub"
-        icon: "Github"
-    image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/roasthub.mp4"
-
-
-  - title: "LinkDescrip AI"
-    href: "https://linkdescrip-ai.remiel.work/"
-    dates: "Sep 2024 - Feb 2025"
-    active: true
-    description: "a web application that helps users generate optimized LinkedIn headlines based on their professional bios. By utilizing the power of natural language processing models, this tool provides catchy and professional headlines to enhance users' LinkedIn profiles."
-    technologies:
-      - "Next.js"
-      - "Typescript"
-      - "Vercel"
-      - "Gemini"
-      - "Shadcn UI"
-      - "Magic UI"
-    links:
-      - type: "Demo"
-        href: "https://linkdescrip-ai.remiel.work/"
-        icon: "Globe"
-      - type: "Source"
-        href: "https://github.remiel.work/linkdescrip-ai/"
-        icon: "Github"
-    image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/linkdescrip.mp4"
-
-  - title: "Batmode extension"
-    href: "https://github.remiel.work/batmode/"
-    dates: "April 2023 - May 2023"
-    active: true
-    description: "Batmode is a Chrome extension that instantly enables dark mode across any website, giving your eyes the comfort they deserve. With one click, transform your browsing experience and enjoy a sleek, modern, and eye-friendly dark theme."
-    technologies:
-      - "JavaScript"
-      - "Chrome"
-      - "HTML/CSS"
-    links:
-      - type: "Github"
-        href: "https://github.remiel.work/batmode/"
-        icon: "Github"
-    image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/batmode.mp4"
-
-
-writings:
-  - title: "Stop calling yourself a frontend developer, it’s killing your career"
-    href: "https://medium.com/ux-planet/stop-calling-yourself-a-frontend-developer-its-killing-your-career-9e0150196b99"
-    description: "I’m on the Awwwards Young Jury and I see hundreds of technically perfect but utterly soulless websites. Don’t let yours be one of them."
-  - title: "How being a designer made me a better backend developer"
-    href: "https://medium.com/design-bootcamp/how-being-a-designer-made-me-a-better-backend-dev-d41bb3ed0da3"
-    description: "Let me tell you a secret. My journey into the dark, mysterious world of backend development, a land of cryptic commands and humming servers, did not start with a black hoodie and a glowing terminal."
-  - title: "Must-have Design Resources in 2023"
-    href: "https://uxplanet.org/must-have-design-resources-in-2023-part-1-fc3cbb5fcaf4"
-    description: "Graphic design is transforming rapidly as we move deeper into the 21st century. To stay ahead, it’s important to keep learning and seek out the latest resources and skills that will be most valuable now and in the years to come. Adapting to these changes ensures you remain competitive and creative in a fast-evolving field."
-  - title: "The 5 mistakes that UX beginners make"
-    href: "https://medium.com/design-bootcamp/the-5-mistakes-that-ux-beginners-make-1c131598cff3"
-    description: "When I began designing interfaces, I made every possible mistake. Learning from common pitfalls has shaped my approach. These are the top five errors beginners should watch out for."
-
-songs:
-  - title: "Perfect"
-    artist: "Ed Sheeran"
-    url: "https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v"
-    albumCover: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/perfect.jpg"
-  - title: "Golden Hour"
-    artist: "JVKE"
-    url: "https://open.spotify.com/track/4yNk9iz9WVJikRFle3XEvn"
-    albumCover: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/jvke.jpg"
-  - title: "Monica"
-    artist: "Anirudh Ravichander"
-    url: "https://open.spotify.com/track/2t1pEpxPz91KldW7C0FyZv"
-    albumCover: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/monica.jpg"
-  - title: "Señorita"
-    artist: "Camila Cabello"
-    url: "https://open.spotify.com/track/0TK2YIli7K1leLovkQiNik?si=9f5b429f9adb4303"
-    albumCover: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/senorita.jpg"
-  - title: "Love Me"
-    artist: "Justin Bieber"
-    url: "https://open.spotify.com/track/0yIywEquxORnu1dR0WYsdN"
-    albumCover: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/justin.jpg"
 
 research:
   - title: "Multimodal Deep Learning: Bridging Text and Image Classification with Advanced Architecture"
