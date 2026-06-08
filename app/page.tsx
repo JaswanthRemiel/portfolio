@@ -23,7 +23,7 @@ export default async function Page() {
           <TabsSection
             blogPosts={blogPosts.slice(0, 6)}
             research={details.research || []}
-            projects={(details.projects || []).slice(0, 6)}
+            projects={(details.projects || []).slice(0, 3)}
           />
         </div>
 
