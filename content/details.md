@@ -1,5 +1,25 @@
 ---
 projects:
+  - title: "TrackCode"
+    href: "https://github.com/JaswanthRemiel/TrackCode"
+    dates: "June 2026 - Present"
+    active: true
+    description: "TrackCode helps you master LeetCode problems by organizing questions by company, tracking your daily streaks, and generating personalized study plans. With its intuitive interface and smart analytics, you'll be fully prepared for your next technical interview in no time."
+    technologies:
+      - "Next.js"
+      - "Typescript"
+      - "Firebase"
+      - "Shadcn UI"
+    links:
+      - type: "Demo"
+        href: "https://leettrack.remiel.work/"
+        icon: "Globe"
+      - type: "Source"
+        href: "https://github.com/JaswanthRemiel/TrackCode"
+        icon: "Github"
+    image: ""
+    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/trackcode.mp4"
+
   - title: "NoteOS"
     href: "https://github.com/JaswanthRemiel/NoteOS"
     dates: "Sep 2024 - Feb 2025"
