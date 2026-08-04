@@ -12,7 +12,7 @@ projects:
       - "Shadcn UI"
     links:
       - type: "Demo"
-        href: "https://leettrack.remiel.work/"
+        href: "https://trackcode.remiel.in/"
         icon: "Globe"
       - type: "Source"
         href: "https://github.com/JaswanthRemiel/TrackCode"
@@ -33,7 +33,7 @@ projects:
       - "Shadcn UI"
     links:
       - type: "Demo"
-        href: "https://notes.remiel.work/"
+        href: "https://notes.remiel.in/"
         icon: "Globe"
       - type: "Source"
         href: "https://github.com/JaswanthRemiel/NoteOS"
@@ -54,7 +54,7 @@ projects:
       - "net/http"
     links:
       - type: "Demo"
-        href: "http://github.remiel.work/itsGOtime/"
+        href: "http://github.remiel.in/itsGOtime/"
         icon: "Globe"
       - type: "Source"
         href: "https://github.com/JaswanthRemiel/itsGOtime"
@@ -79,7 +79,7 @@ projects:
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/vsmediabar.mp4"
 
   - title: "Gitsush"
-    href: "https://github.remiel.work/gitsush/"
+    href: "https://github.remiel.in/gitsush/"
     dates: "April 2025 - Present"
     active: true
     description: "a quirky and efficient CLI tool that wraps git add, commit, and push into a single command. With gshh, you can handle your Git workflow like a sushi chef fast, clean, and with style. Perfect for developers who love automation with a dash of fun."
@@ -93,7 +93,7 @@ projects:
         href: "https://www.npmjs.com/package/gitsush"
         icon: "Globe"
       - type: "Source"
-        href: "https://github.remiel.work/gitsush/"
+        href: "https://github.remiel.in/gitsush/"
         icon: "Github"
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/gitsush.mp4"
