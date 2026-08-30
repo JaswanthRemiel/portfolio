@@ -33,15 +33,24 @@ export function Header() {
           <span className="hidden sm:inline">design-obsessed, full-stack, dabbling in ml.</span>
           <span className="sm:hidden">full-stack, design-focused, into ml.</span>
           <br />
-          currently at{" "}
+          {/* currently engg at{" "}
           <Link
             href="https://ncompass.inc"
             target="_blank"
-            className="text-gray-100 decoration-gray-500 underline underline-offset-4 decoration-dashed hover:opacity-70 transition-opacity duration-200"
+            className="text-gray-100 decoration-blue-500 underline underline-offset-4 decoration-dashed hover:opacity-70 transition-opacity duration-200"
           >
             NCompass
           </Link>
           .
+          <br /> */}
+          curioso?{" "}
+          <Link
+            href="/resume"
+            target="_blank"
+            className="text-orange-600 dark:text-orange-200 hover:opacity-75 transition-opacity duration-200"
+          >
+            résumé
+          </Link>.
         </h1>
       </header>
     </motion.div>
