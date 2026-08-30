@@ -1,5 +1,26 @@
 ---
 projects:
+  - title: "itsGOtime"
+    href: "https://github.com/JaswanthRemiel/itsGOtime"
+    dates: "November 2025 - Present"
+    active: true
+    description: "A lightweight, efficient uptime monitoring system built with Go and HTML. Monitor your websites, APIs, and services with automated checks, historical tracking, and a beautiful status page, all powered by GitHub Actions and GitHub Pages."
+    technologies:
+      - "GO"
+      - "Github Actions"
+      - "go/context"
+      - "io/ioutil"
+      - "net/http"
+    links:
+      - type: "Demo"
+        href: "http://github.remiel.in/itsGOtime/"
+        icon: "Globe"
+      - type: "Source"
+        href: "https://github.com/JaswanthRemiel/itsGOtime"
+        icon: "Github"
+    image: ""
+    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/itsgotime.mp4"
+    
   - title: "TrackCode"
     href: "https://github.com/JaswanthRemiel/TrackCode"
     dates: "June 2026 - Present"
@@ -40,27 +61,6 @@ projects:
         icon: "Github"
     image: ""
     video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/note.mp4"
-
-  - title: "itsGOtime"
-    href: "https://github.com/JaswanthRemiel/itsGOtime"
-    dates: "November 2025 - Present"
-    active: true
-    description: "A lightweight, efficient uptime monitoring system built with Go and HTML. Monitor your websites, APIs, and services with automated checks, historical tracking, and a beautiful status page, all powered by GitHub Actions and GitHub Pages."
-    technologies:
-      - "GO"
-      - "Github Actions"
-      - "go/context"
-      - "io/ioutil"
-      - "net/http"
-    links:
-      - type: "Demo"
-        href: "http://github.remiel.in/itsGOtime/"
-        icon: "Globe"
-      - type: "Source"
-        href: "https://github.com/JaswanthRemiel/itsGOtime"
-        icon: "Github"
-    image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/itsgotime.mp4"
   
   - title: "MediaBar"
     href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
