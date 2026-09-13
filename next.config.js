@@ -45,6 +45,12 @@ const nextConfig = {
         hostname: "cdn-images-2.medium.com",
         port: "",
         pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "images.credly.com",
+        port: "",
+        pathname: "/**"
       }
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

@@ -377,6 +377,34 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
+.tabs-fade-right {
+  background: linear-gradient(to left, var(--muted) 20%, color-mix(in srgb, var(--muted) 80%, transparent) 55%, transparent 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.light .tabs-fade-right {
+  background: linear-gradient(to left, #e7e5e4 20%, rgba(231, 229, 228, 0.8) 55%, transparent 100%);
+}
+
+.tabs-fade-left {
+  background: linear-gradient(to right, var(--muted) 20%, color-mix(in srgb, var(--muted) 80%, transparent) 55%, transparent 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.light .tabs-fade-left {
+  background: linear-gradient(to right, #e7e5e4 20%, rgba(231, 229, 228, 0.8) 55%, transparent 100%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* MDX Prose Styles */
 .prose-custom {
   @apply text-gray-300 leading-relaxed;
