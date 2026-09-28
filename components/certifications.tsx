@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 interface Certification {
   issuer: string;
@@ -18,12 +19,14 @@ function CertificationBadge({ issuer, title, href, image }: Certification) {
     <div className="flex flex-col items-center text-center group h-full justify-start w-full">
       {image && (
         <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 relative flex items-center justify-center mb-3 transition-transform duration-300 group-hover:scale-105 shrink-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={image}
             alt={title}
+            width={112}
+            height={112}
             className="max-w-full max-h-full object-contain"
-            loading="lazy"
+            sizes="(max-width: 640px) 80px, 112px"
+            quality={75}
           />
         </div>
       )}

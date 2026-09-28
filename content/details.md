@@ -19,7 +19,7 @@ projects:
         href: "https://github.com/JaswanthRemiel/itsGOtime"
         icon: "Github"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/itsgotime.mp4"
+    video: "/videos/itsgotime.mp4"
     
   - title: "TrackCode"
     href: "https://github.com/JaswanthRemiel/TrackCode"
@@ -39,7 +39,7 @@ projects:
         href: "https://github.com/JaswanthRemiel/TrackCode"
         icon: "Github"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/trackcode.mp4"
+    video: "/videos/trackcode.mp4"
 
   - title: "NoteOS"
     href: "https://github.com/JaswanthRemiel/NoteOS"
@@ -60,7 +60,7 @@ projects:
         href: "https://github.com/JaswanthRemiel/NoteOS"
         icon: "Github"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/note.mp4"
+    video: "/videos/note.mp4"
   
   - title: "MediaBar"
     href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
@@ -76,7 +76,7 @@ projects:
         href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
         icon: "Globe"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/vsmediabar.mp4"
+    video: "/videos/vsmediabar.mp4"
 
   - title: "Gitsush"
     href: "https://github.remiel.in/gitsush/"
@@ -96,7 +96,7 @@ projects:
         href: "https://github.remiel.in/gitsush/"
         icon: "Github"
     image: ""
-    video: "https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/videos/gitsush.mp4"
+    video: "/videos/gitsush.mp4"
 
 research:
   - title: "Multimodal Deep Learning: Bridging Text and Image Classification with Advanced Architecture"
@@ -112,6 +112,7 @@ research:
       - "Multimodal Learning"
       - "Machine Learning"
     links: ["https://link.springer.com/chapter/10.1007/978-3-031-96871-6_5"]
+    images: []
     image: ""
     video: ""
 
@@ -127,6 +128,7 @@ research:
       - "Simulation"
       - "Hybrid ML"
     links: []
+    images: []
     image: ""
     video: ""
 

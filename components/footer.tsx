@@ -14,18 +14,23 @@ export function Footer() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      const distanceFromBottom = scrollHeight - scrolled;
-      
-      // Calculate opacity based on distance from bottom
-      // When near bottom (< 500px), opacity increases
-      const opacity = Math.max(0, Math.min(1, (500 - distanceFromBottom) / 500));
-      setScrollOpacity(opacity);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrolled = window.scrollY;
+          const distanceFromBottom = scrollHeight - scrolled;
+          const opacity = Math.max(0, Math.min(1, (500 - distanceFromBottom) / 500));
+          setScrollOpacity(opacity);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -58,20 +63,7 @@ export function Footer() {
 
       {/* Content container */}
       <div className="w-full items-center justify-center z-10 relative max-w-screen-sm mx-auto px-4">
-        <div className="relative overflow-hidden w-full flex items-start" style={{ height: 'clamp(120px, 20vh, 280px)' }}>
-          {/* Large gradient text logo - responsive sizing */}
-          <h2 
-            className="absolute bottom-0 left-0 right-0 text-center text-white/65 tracking-tighter mx-auto"
-            style={{ 
-              fontFamily: "'VT323', monospace",
-              fontSize: 'clamp(50px, 10vw, 140px)',
-              lineHeight: '0.9',
-              transform: 'translateY(25%)',
-              letterSpacing: '0.1em',
-            }}
-          >
-          </h2>
-        </div>
+        <div className="relative overflow-hidden w-full flex items-start" style={{ height: 'clamp(60px, 10vh, 120px)' }} />
       </div>
     </footer>
   );

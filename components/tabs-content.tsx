@@ -2,11 +2,26 @@
 
 import { useRef, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import { Projects } from "@/components/projects";
-import { ExperienceDemo } from "@/components/experience";
-import { BlogTabContent } from "@/components/blog-tab-content";
-import { ResearchContent } from "@/components/research";
-import { CertificationsContent } from "@/components/certifications";
+
+const ExperienceDemo = dynamic(
+  () => import("@/components/experience").then((m) => m.ExperienceDemo),
+  { ssr: false }
+);
+const BlogTabContent = dynamic(
+  () => import("@/components/blog-tab-content").then((m) => m.BlogTabContent),
+  { ssr: false }
+);
+const ResearchContent = dynamic(
+  () => import("@/components/research").then((m) => m.ResearchContent),
+  { ssr: false }
+);
+const CertificationsContent = dynamic(
+  () => import("@/components/certifications").then((m) => m.CertificationsContent),
+  { ssr: false }
+);
+
 import {
   Tabs,
   TabsContent,
@@ -14,14 +29,7 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs";
 import type { BlogPostMeta } from "@/lib/blog";
-
-interface Research {
-  title: string;
-  href?: string;
-  description: string;
-  dates: string;
-  technologies: string[];
-}
+import type { Research } from "@/components/research";
 
 interface Certification {
   issuer: string;

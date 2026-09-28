@@ -17,7 +17,6 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { getDetails } from "@/lib/data";
 import { Globe, Github } from "lucide-react";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
@@ -90,6 +89,7 @@ function ProjectCard({
             loop
             muted
             playsInline
+            preload="metadata"
             className="pointer-events-none mx-auto h-40 w-full object-cover object-top"
           />
         )}
@@ -100,6 +100,8 @@ function ProjectCard({
             width={500}
             height={300}
             className="h-40 w-full overflow-hidden object-cover object-top"
+            sizes="(max-width: 640px) 100vw, 50vw"
+            quality={75}
           />
         )}
       </Link>
@@ -111,7 +113,7 @@ function ProjectCard({
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
           <div className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-            <Markdown>{description}</Markdown>
+            <p className="leading-relaxed">{description}</p>
           </div>
         </div>
       </CardHeader>
@@ -188,6 +190,7 @@ export default async function ProjectsPage() {
               width={180}
               height={180}
               className="mr-4 invert dark:invert-0"
+              priority
             />
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 mx-auto">

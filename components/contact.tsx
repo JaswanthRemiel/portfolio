@@ -3,24 +3,10 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useTheme } from "next-themes";
-import { motion, HTMLMotionProps } from "framer-motion";
-import { IconBrandLinkedin, IconBrandGithub, IconBrandTwitter, IconMail } from "@tabler/icons-react";
-
-type MotionSectionProps = React.ComponentProps<"section"> &
-  HTMLMotionProps<"section">;
-
-const MotionSection =
-  motion.section as unknown as React.ComponentType<MotionSectionProps>;
+import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 
 export default function ContactSection() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [visitorTime, setVisitorTime] = useState<Date | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     setVisitorTime(new Date());
@@ -37,37 +23,35 @@ export default function ContactSection() {
     }
   };
 
-  if (!mounted) return null;
-
   const socialLinks = [
     {
       href: "https://github.com/JaswanthRemiel",
       label: "GitHub",
-      icon: IconBrandGithub,
+      icon: Github,
       color: "text-gray-300 hover:text-white",
     },
     {
       href: "https://linkedin.com/in/jaswanthremiel",
       label: "LinkedIn",
-      icon: IconBrandLinkedin,
+      icon: Linkedin,
       color: "text-gray-300 hover:text-blue-400",
     },
     {
       href: "https://twitter.com/jaswanthremiel",
       label: "Twitter",
-      icon: IconBrandTwitter,
+      icon: Twitter,
       color: "text-gray-300 hover:text-sky-400",
     },
     {
       href: "mailto:work.remiel@gmail.com",
       label: "Email",
-      icon: IconMail,
+      icon: Mail,
       color: "text-gray-300 hover:text-orange-400",
     },
   ];
 
   return (
-    <MotionSection>
+    <section>
       <h2 className="text-lg mb-4 font-medium text-gray-300">contact</h2>
       <p className="text-l sm:text-l">thanks for hanging around till the very end.</p> 
       <p className="text-l sm:text-l"> and if you're a recruiter, well, the "say hello" button is right up there ;) </p>
@@ -94,7 +78,7 @@ export default function ContactSection() {
               >
                 <Icon
                   size={20}
-                  stroke={1.5}
+                  strokeWidth={1.5}
                   className={`${link.color} transition-colors duration-300`}
                 />
               </Link>
@@ -102,19 +86,15 @@ export default function ContactSection() {
           })}
         </div>
         <div className="flex justify-start mt-3">
-          {mounted && (
-            <Image
-              src="https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/signre.png"
-              alt="Logo"
-              width={40}
-              height={40}
-              className={`opacity-70 hover:opacity-100 transition-opacity ${
-                resolvedTheme === "light" ? "" : "invert"
-              }`}
-            />
-          )}
+          <Image
+            src="https://cdn.jsdelivr.net/gh/JaswanthRemiel/portfolio-assests@main/images/signre.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className="opacity-70 hover:opacity-100 transition-opacity dark:invert"
+          />
         </div>
       </div>
-    </MotionSection>
+    </section>
   );
 }

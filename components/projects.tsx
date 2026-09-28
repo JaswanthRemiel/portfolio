@@ -11,7 +11,6 @@ import {
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import { Globe, Github, ArrowRight } from "lucide-react";
 
 const Icons = {
@@ -106,7 +105,7 @@ export function ProjectCard({
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
           <div className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
-            <Markdown>{description}</Markdown>
+            <p className="leading-relaxed">{description}</p>
           </div>
         </div>
       </CardHeader>
