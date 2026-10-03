@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Globe, Github, ArrowRight } from "lucide-react";
+import { ProjectVideo } from "@/components/project-video";
 
 const Icons = {
   Globe: <Globe className="size-3" suppressHydrationWarning />,
@@ -76,14 +77,7 @@ export function ProjectCard({
         className={cn("block cursor-pointer", className)}
       >
         {video && (
-          <video
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="pointer-events-none mx-auto h-40 w-full object-cover object-top"
-          />
+          <ProjectVideo src={video} title={title} />
         )}
         {image && (
           <Image
