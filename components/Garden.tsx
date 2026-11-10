@@ -1,24 +1,23 @@
 // The artwork at the bottom of the page: a bed of flowers growing out of a strip
 // of soil, cut from one painted image (public/garden/flowers.webp). Each flower is
-// shown through its own window onto that image so it can sway on its own from
-// the base of its stem; the soil is a separate, still window across the bottom.
-// The strip is repeated mirrored on either side so it runs seamlessly across very
-// wide screens. Motion is CSS only and deliberately slight (see globals.css).
+// its own element showing its slice of that image, so it can sway on its own
+// from the base of its stem; the soil is a separate, still slice along the bottom.
+//
+// Built from plain HTML boxes (not SVG) on purpose: CSS transform animations on
+// HTML elements run on the GPU compositor, so Safari doesn't repaint the whole
+// garden every frame while it is also keeping the sticky garden pinned during
+// scroll. Mirrored copies either side are only drawn on very wide screens
+// (see .strip.side in globals.css). Motion is CSS only and deliberately slight.
 
-const SRC = "/garden/flowers.webp";
+import type { CSSProperties } from "react";
 
-/** Size of the source image, in its own pixels. */
+/** Size of the source image, in its own pixels. Everything below is laid out in
+ *  these units and the whole bed is scaled down in CSS (--garden-scale). */
 const IW = 5059;
 const IH = 300;
 
-/** Flowers are cut off at this row; everything below belongs to the soil strip. */
+/** Flowers are cut off at this row; everything below belongs to the soil slice. */
 const CUT = 226;
-
-/** Rendered height of the strip, in CSS pixels (matches .scene in globals.css).
- *  Exactly half the image height, so on 2x screens every image pixel lands on one
- *  device pixel; any taller and the browser upscales it and the flowers go soft. */
-const HEIGHT = IH / 2;
-const WIDTH = Math.round((HEIGHT / IH) * IW * 3);
 
 // One entry per flower, left to right: [x, width, top, stem base x], in image pixels.
 // Measured from the image's alpha channel: columns are split at the clear gaps
@@ -99,60 +98,42 @@ function rng(seed: number) {
   };
 }
 
-/** A window onto one rectangle of the source image, drawn at (dx, dy). */
-function Crop({ x, y, w, h, dx, dy }: { x: number; y: number; w: number; h: number; dx: number; dy: number }) {
-  return (
-    <svg x={dx} y={dy} width={w} height={h} viewBox={`${x} ${y} ${w} ${h}`} overflow="hidden">
-      <image href={SRC} width={IW} height={IH} />
-    </svg>
-  );
-}
-
-/** One full copy of the strip, occupying x = 0..IW. `seed` varies the sway timing. */
-function Strip({ seed }: { seed: number }) {
+/** One full copy of the strip, IW wide. `seed` varies the sway timing. */
+function Strip({ seed, at, mirrored, side }: { seed: number; at: number; mirrored?: boolean; side?: boolean }) {
   const r = rng(seed);
   return (
-    <>
-      <g className="flowers">
-        {SPRITES.map(([x, w, top, base]) => {
-          const sway = 7 + r() * 5;
-          const delay = -r() * 12;
-          return (
-            <g key={x} transform={`translate(${base} ${CUT})`}>
-              <g className="sway" style={{ animationDuration: `${sway.toFixed(2)}s`, animationDelay: `${delay.toFixed(2)}s` }}>
-                <Crop x={x} y={top} w={w} h={CUT - top} dx={x - base} dy={top - CUT} />
-              </g>
-            </g>
-          );
-        })}
-      </g>
-      <g className="soil">
-        <Crop x={0} y={CUT} w={IW} h={IH - CUT} dx={0} dy={CUT} />
-      </g>
-    </>
+    <div
+      className={side ? "strip side" : "strip"}
+      style={{ left: at, width: IW, height: IH, transform: mirrored ? "scaleX(-1)" : undefined }}
+    >
+      {SPRITES.map(([x, w, top, base]) => {
+        const style: CSSProperties = {
+          left: x,
+          top,
+          width: w,
+          height: CUT - top,
+          backgroundPosition: `${-x}px ${-top}px`,
+          transformOrigin: `${base - x}px 100%`,
+          animationDuration: `${(7 + r() * 5).toFixed(2)}s`,
+          animationDelay: `${(-r() * 12).toFixed(2)}s`,
+        };
+        return <div key={x} className="flower sway" style={style} />;
+      })}
+      <div className="soil" style={{ top: CUT, width: IW, height: IH - CUT, backgroundPosition: `0 ${-CUT}px` }} />
+    </div>
   );
 }
 
 export default function Garden() {
   return (
     <div className="scene" role="img" aria-label="A row of flowers swaying gently in a bed of soil.">
-      <svg
-        viewBox={`${-IW} 0 ${IW * 3} ${IH}`}
-        width={WIDTH}
-        height={HEIGHT}
-        style={{ marginLeft: -WIDTH / 2 }}
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        {/* Mirrored copies either side meet the centre copy edge to edge. */}
-        <g transform="scale(-1 1)">
-          <Strip seed={11} />
-        </g>
-        <Strip seed={7} />
-        <g transform={`translate(${IW * 2} 0) scale(-1 1)`}>
-          <Strip seed={13} />
-        </g>
-      </svg>
+      <div className="bed" aria-hidden="true">
+        <div className="strips" style={{ width: IW * 3, height: IH }}>
+          <Strip seed={11} at={0} mirrored side />
+          <Strip seed={7} at={IW} />
+          <Strip seed={13} at={IW * 2} mirrored side />
+        </div>
+      </div>
     </div>
   );
 }

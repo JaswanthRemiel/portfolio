@@ -530,14 +530,20 @@ a.card {
 /* Sticks to the bottom of the window so the flowers are always in view;
    text scrolling down fades out into the sky just above them. */
 .scene {
+  /* Image pixels → CSS pixels. 0.5 makes the 300px-tall painting 150px, so on
+     2x screens every image pixel lands on one device pixel (any larger and it
+     goes soft). */
+  --garden-scale: 0.5;
   position: sticky;
   bottom: 0;
   z-index: 1;
-  height: 150px;
+  height: calc(300px * var(--garden-scale));
   margin-top: 88px;
   flex: none;
   pointer-events: none;
   background: var(--bg);
+  /* Its own compositing layer, so Safari moves it during scroll without repainting. */
+  transform: translateZ(0);
 }
 
 .scene::before {
@@ -550,16 +556,44 @@ a.card {
   background: linear-gradient(to bottom, transparent, var(--bg));
 }
 
-.scene svg {
+/* Clips the (much wider) strips so the page can never pan sideways. */
+.bed {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.strips {
   position: absolute;
   bottom: 0;
   left: 50%;
-  display: block;
+  transform: translateX(-50%) scale(var(--garden-scale));
+  transform-origin: 50% 100%;
 }
 
-/* A slow, slight sway from the base of each stem. */
+.strip {
+  position: absolute;
+  top: 0;
+}
+
+/* The mirrored copies only matter once the window is wider than the centre
+   copy (5059px × 0.5 ≈ 2530px); below that, don't draw or animate them. */
+@media (max-width: 2500px) {
+  .strip.side {
+    display: none;
+  }
+}
+
+.flower,
+.soil {
+  position: absolute;
+  background-image: url("/garden/flowers.webp");
+  background-repeat: no-repeat;
+  background-size: 5059px 300px;
+}
+
+/* A slow, slight sway from the base of each stem (origin set per flower). */
 .sway {
-  transform-origin: 0 0;
   animation: sway ease-in-out infinite alternate;
 }
 
@@ -651,12 +685,7 @@ a.card {
   }
 
   .scene {
-    height: 128px;
+    --garden-scale: 0.425;
     margin-top: 64px;
-  }
-
-  .scene svg {
-    transform: scale(0.85);
-    transform-origin: 50% 100%;
   }
 }
