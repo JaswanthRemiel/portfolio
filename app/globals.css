@@ -1,49 +1,638 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg: #1652d8;
+  --fg: #ffffff;
+  --muted: rgba(255, 255, 255, 0.68);
+  --rule: rgba(255, 255, 255, 0.42);
+  --hair: rgba(255, 255, 255, 0.22);
+  --accent: #ff7a66;
+  --tile: rgba(255, 255, 255, 0.045);
+  --tile-hover: rgba(255, 255, 255, 0.08);
+  --grain: 0.2;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
   margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), Inter, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Woven-canvas grain over the flat colour. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: var(--grain);
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9 0.35' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.35'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+main {
+  flex: 1;
+  padding: 56px 64px 0;
+}
+
+.intro,
+.sections {
+  display: grid;
+  grid-template-columns: 168px minmax(0, 1fr);
+  column-gap: 40px;
+}
+
+/* Bio on the left, contact pushed out to the right edge of the content column
+   so the intro uses the full width instead of crowding the left. */
+.copy {
+  display: grid;
+  grid-template-columns: minmax(0, 620px) auto;
+  justify-content: space-between;
+  align-items: end;
+  column-gap: 64px;
+  max-width: 1280px;
+}
+
+.bio {
+  line-height: 1.7;
+}
+
+/* A ~75-character measure, with line breaks balanced so no paragraph ends on a
+   lone word or two. */
+.bio p {
+  margin-bottom: 18px;
+  text-wrap: pretty;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
+}
+
+h1,
+h3,
+h4 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+}
+
+p {
+  margin: 0 0 12px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 a {
   color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.15s ease;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 1.5px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.copy footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+@media (max-width: 1100px) {
+  .copy {
+    grid-template-columns: minmax(0, 600px);
+  }
+
+  .copy footer {
+    align-items: flex-start;
+    margin-top: 28px;
+  }
+}
+
+.copy footer a {
+  text-decoration-color: transparent;
+}
+
+.copy footer a:hover {
+  text-decoration-color: currentColor;
+}
+
+.socials,
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0 16px;
+}
+
+/* ---------- Side menu + sections ---------- */
+
+.sections {
+  margin-top: 56px;
+  align-items: start;
+}
+
+.menu {
+  position: sticky;
+  top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.menu button {
+  appearance: none;
+  position: relative;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+/* a small dash in the gutter marks the open section */
+.menu button::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.menu button:hover {
+  color: var(--fg);
+}
+
+.menu button[aria-selected="true"] {
+  color: var(--fg);
+}
+
+.menu button[aria-selected="true"]::before {
+  opacity: 1;
+}
+
+.panels {
+  max-width: 1280px;
+  min-height: 320px;
+}
+
+.panel:not([hidden]) {
+  animation: rise 0.35s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* Projects: poster cards */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+@media (min-width: 1360px) {
+  .cards {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.cards > li {
+  display: flex;
+}
+
+.cards > li > .card {
+  flex: 1;
+}
+
+a.card {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.post h3 {
+  display: -webkit-box;
+  margin-bottom: 10px;
+  overflow: hidden;
+  line-height: 1.4;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: var(--tile);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--rule);
+  background: var(--tile-hover);
+}
+
+.frame {
+  overflow: hidden;
+  border-radius: 5px;
+  aspect-ratio: 16 / 9;
+}
+
+.poster {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.5s ease;
+}
+
+/* Project clips: the poster sits underneath and the video fades in over it once
+   it is actually playing, so there is never a blank frame. */
+.video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.video .poster {
+  position: absolute;
+  inset: 0;
+}
+
+.video video {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.video video[data-ready="true"] {
+  opacity: 1;
+}
+
+.card:hover .poster {
+  transform: scale(1.03);
+}
+
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 10px 6px 4px;
+}
+
+.card .desc {
+  margin: 6px 0 10px;
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: 0.86;
+}
+
+.card-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.card .tech {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.card-foot .links {
+  flex: none;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 14px;
+}
+
+.card-foot a {
+  text-decoration-color: transparent;
+}
+
+.card-foot a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Experience: timeline with photos */
+
+.year {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+}
+
+.year > h3 {
+  line-height: 1.75;
+}
+
+.year > ul {
+  border-left: 1px solid var(--hair);
+  padding-left: 22px;
+}
+
+.year li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 560px) minmax(0, 1fr);
+  align-items: start;
+  gap: 12px 40px;
+  padding-bottom: 28px;
+}
+
+.year li::before {
+  content: "";
+  position: absolute;
+  left: -25.5px;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--fg);
+}
+
+.year li p {
+  margin: 4px 0 0;
+}
+
+.photos {
+  display: flex;
+  gap: 8px;
+}
+
+.photos img {
+  display: block;
+  width: auto;
+  height: 96px;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--hair);
+}
+
+@media (max-width: 1100px) {
+  .year li {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .photos img {
+    height: 76px;
+    min-width: 0;
+  }
+}
+
+/* Research: numbered references, side by side */
+
+.papers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 14px;
+}
+
+.papers li {
+  padding: 18px 20px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: var(--tile);
+}
+
+.papers h3 {
+  margin-top: 6px;
+}
+
+.papers .num {
+  font-variant-numeric: tabular-nums;
+}
+
+.papers p {
+  margin: 6px 0 0;
+}
+
+.papers p:not(.meta) {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.86;
+}
+
+/* Certifications: badge grid */
+
+.certs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.cert {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  background: var(--tile);
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.cert:hover {
+  border-color: var(--rule);
+  background: var(--tile-hover);
+}
+
+.cert-name,
+.cert .meta {
+  display: block;
+}
+
+.cert-name {
+  line-height: 1.35;
+}
+
+.badge {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* ---------- The garden ---------- */
+
+/* Sticks to the bottom of the window so the flowers are always in view;
+   text scrolling down fades out into the sky just above them. */
+.scene {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  height: 150px;
+  margin-top: 88px;
+  flex: none;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.scene::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.scene svg {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  display: block;
+}
+
+/* A slow, slight sway from the base of each stem. */
+.sway {
+  transform-origin: 0 0;
+  animation: sway ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-1.1deg);
+  }
+  to {
+    transform: rotate(1.1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway,
+  .panel:not([hidden]) {
+    animation: none;
+  }
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 720px) {
+  main {
+    padding: 36px 20px 0;
+  }
+
+  .intro,
+  .sections {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 22px;
+  }
+
+  .sections {
+    margin-top: 52px;
+  }
+
+  /* The side menu becomes a wrapping row of pills, so every tab stays visible. */
+  .menu {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .menu button {
+    padding: 5px 12px;
+    border: 1px solid var(--hair);
+    border-radius: 999px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .menu button[aria-selected="true"] {
+    border-color: var(--fg);
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .menu button::before {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .scene {
+    height: 128px;
+    margin-top: 64px;
+  }
+
+  .scene svg {
+    transform: scale(0.85);
+    transform-origin: 50% 100%;
   }
 }
