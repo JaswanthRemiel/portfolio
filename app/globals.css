@@ -596,15 +596,39 @@ a.card {
     margin-top: 52px;
   }
 
-  /* The side menu becomes a wrapping row of pills, so every tab stays visible. */
+  /* The side menu becomes one row of pills that scrolls sideways, running to the
+     screen edges. Each edge fades out while there are more tabs beyond it
+     (Tabs.tsx sets data-more-left / data-more-right as you scroll). */
   .menu {
+    --fade-left: 0px;
+    --fade-right: 0px;
     position: static;
     flex-direction: row;
-    flex-wrap: wrap;
     gap: 8px;
+    margin: 0 -20px;
+    padding: 0 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 var(--fade-left), #000 calc(100% - var(--fade-right)), transparent);
+  }
+
+  .menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu[data-more-left] {
+    --fade-left: 40px;
+  }
+
+  .menu[data-more-right] {
+    --fade-right: 40px;
   }
 
   .menu button {
+    flex: none;
+    white-space: nowrap;
     padding: 5px 12px;
     border: 1px solid var(--hair);
     border-radius: 999px;

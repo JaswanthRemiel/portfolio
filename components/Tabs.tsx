@@ -8,6 +8,46 @@ export type Tab = { id: string; label: string; content: ReactNode };
 export default function Tabs({ tabs }: { tabs: Tab[] }) {
   const [active, setActive] = useState(tabs[0].id);
   const refs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  // On phones the menu is a sideways-scrolling row; flag which edges have more
+  // tabs beyond them so CSS can fade those edges out.
+  useEffect(() => {
+    const el = menuRef.current;
+    if (!el) return;
+    const update = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      el.toggleAttribute("data-more-left", el.scrollLeft > 1);
+      el.toggleAttribute("data-more-right", el.scrollLeft < max - 1);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      ro.disconnect();
+    };
+  }, []);
+
+  // Keep the open tab fully in view in that row. Scrolls only the row, never the
+  // page; does nothing on desktop, where the menu doesn't scroll.
+  const scrolledOnce = useRef(false);
+  useEffect(() => {
+    const el = menuRef.current;
+    const btn = refs.current[active];
+    if (!el || !btn || el.scrollWidth <= el.clientWidth) return;
+    // A deep link (/#certifications) should load already scrolled; later taps glide.
+    const pad = 40; // clear of the edge fade
+    const left = btn.offsetLeft - el.offsetLeft;
+    const right = left + btn.offsetWidth;
+    let target: number | null = null;
+    if (left - pad < el.scrollLeft) target = Math.max(0, left - pad);
+    else if (right + pad > el.scrollLeft + el.clientWidth) target = right + pad - el.clientWidth;
+    if (target === null || Math.abs(target - el.scrollLeft) < 1) return;
+    el.scrollTo({ left: target, behavior: scrolledOnce.current ? "smooth" : "instant" });
+    scrolledOnce.current = true;
+  }, [active]);
 
   // Allow deep links such as /#experience.
   useEffect(() => {
@@ -40,7 +80,7 @@ export default function Tabs({ tabs }: { tabs: Tab[] }) {
 
   return (
     <div className="sections">
-      <div className="menu" role="tablist" aria-label="Sections" onKeyDown={onKeyDown}>
+      <div ref={menuRef} className="menu" role="tablist" aria-label="Sections" onKeyDown={onKeyDown}>
         {tabs.map((t) => (
           <button
             key={t.id}
