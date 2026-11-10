@@ -51,7 +51,9 @@ body::before {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  overflow-x: clip;
+  /* clip (not hidden) keeps the sticky garden working; clipping both axes stops
+     the soil extension below the garden from adding scroll space at the end. */
+  overflow: clip;
 }
 
 main {
@@ -554,6 +556,28 @@ a.card {
   bottom: 100%;
   height: 80px;
   background: linear-gradient(to bottom, transparent, var(--bg));
+}
+
+/* More soil below the bed. Safari on iOS draws the page under its see-through
+   floating toolbar, below where the sticky garden stops; without this the page
+   would show scrolling past underneath the flowers. soil-tile.webp is soil cut
+   from the painting that darkens as it goes deeper, then plain deep-soil brown
+   below it. The texture loads on touch devices only; desktops never see this. */
+.scene::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 50vh;
+  background: #2b1c12;
+}
+
+@media (hover: none) {
+  .scene::after {
+    /* 2600px wide, centred on the painting's centre like the garden itself */
+    background: #2b1c12 url("/garden/soil-tile.webp") center top / calc(2600px * var(--garden-scale)) auto no-repeat;
+  }
 }
 
 /* Clips the (much wider) strips so the page can never pan sideways. */
