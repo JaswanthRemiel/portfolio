@@ -113,7 +113,7 @@ experience:
   - year: "2025"
     title: "Design Jury"
     company: "Awwwards"
-    href: "https://www.awwwards.com/"
+    href: "https://www.awwwards.com/jury-member/jaswanth-remiel"
     dates: "Present"
     description: "Serving as a design jury member, judging websites submitted to Awwwards."
     photos:
@@ -245,7 +245,7 @@ certifications:
     image: "/badges/google-ux.png"
 ---
 
-I'm a software engineer who's design-obsessed, full-stack, and dabbling in ML. I'm an SDE-1 at NCompass and sit on the design jury at [Awwwards](https://www.awwwards.com/).
+I'm a software engineer who's design-obsessed, full-stack, and dabbling in ML. I'm an SDE-1 at NCompass and sit on the design jury at [Awwwards](https://www.awwwards.com/jury-member/jaswanth-remiel).
 
 I previously did AI research at Samsung R&D India and interned at IIT Palakkad's Technology IHub Foundation. Along the way, I co-authored a [Springer Nature chapter](https://link.springer.com/chapter/10.1007/978-3-031-96871-6_5) on multimodal deep learning. These days I build things for the web that sit where engineering meets design.
 
