@@ -37,7 +37,8 @@ export type Role = {
   org: string;
   href?: string;
   when?: string;
-  description: string;
+  /** One entry per paragraph; separate paragraphs in details.md with a blank line. */
+  description: string[];
   photos: { src: string; alt: string }[];
 };
 
@@ -163,7 +164,10 @@ export function getContent(): Content {
       org: e.company,
       href: e.href || undefined,
       when: e.dates || undefined,
-      description: e.description ?? "",
+      description: (e.description ?? "")
+        .split(/\n\s*\n/)
+        .map((p) => p.replace(/\s*\n\s*/g, " ").trim())
+        .filter(Boolean),
       photos: (e.photos ?? []).map((p) => ({ src: p.src, alt: p.alt ?? "" })),
     });
   }

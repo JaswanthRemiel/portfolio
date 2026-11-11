@@ -120,21 +120,27 @@ projects:
 # Grouped under a year heading on the Experience tab, newest first.
 experience:
   - year: "2025"
-    title: "SDE-1"
+    title: "Software Developer 1"
     company: "NCompass"
     href: ""
-    dates: "Present"
-    description: "Collaborating with a tight-knit team, blending tech skills with creativity and shipping features that power real business results."
+    dates: "Apr 2025 – Present"
+    description: |
+      My first full-time role dropped me straight into the deep end of a B2B ecommerce platform, where 50+ tenants and thousands of monthly orders run through the NestJS services and REST APIs I build. Fulfillment errors are down by half. I also folded 12 scattered AWS Lambdas into a single NestJS backend, which cut deploy time by 60% and got me in a room walking the CTO, COO and CBO through the new architecture.
+
+      The other half of my week is live sports streaming, where a few seconds of lag is the whole story. I rebuilt the pipeline on AWS MediaLive, MediaStore, Firestore and Google Cloud: streams now go live about 80% faster, video arrives 45% sooner, and recovering a dropped stream rarely needs a human anymore. Somewhere in between I shipped a RAG chatbot with LangChain and LlamaIndex that finds marketplace products 65% faster than searching by hand.
     photos:
       - src: "/experience/ncompass.jpg"
         alt: "At work at NCompass"
 
   - year: "2025"
-    title: "Design Jury"
+    title: "Design Jury Member"
     company: "Awwwards"
     href: "https://www.awwwards.com/jury-member/jaswanth-remiel"
-    dates: "Present"
-    description: "Serving as a design jury member, judging websites submitted to Awwwards."
+    dates: "Apr 2025 – Present"
+    description: |
+      Part of my week goes to studying some of the best websites on the internet, closely. As a Young Jury member, I've scored 100+ submissions from studios and developers around the world.
+
+      Every site gets judged on design, UI/UX, accessibility, performance, responsiveness and how it's actually built. Opening dev tools on award-worthy work has quietly made me a pickier engineer: I notice the janky scroll, the missing alt text and the 4 MB hero image long before anyone else does.
     photos:
       - src: "/experience/awwwards.jpg"
         alt: "Awwwards jury"
@@ -142,27 +148,36 @@ experience:
         alt: "Awwwards event"
 
   - year: "2024"
-    title: "Research & AI Intern"
+    title: "PRISM Intern"
     company: "Samsung R&D India"
     href: ""
-    dates: "Mar 2024"
-    description: "Worked on AI research and machine learning implementations alongside the research teams."
+    dates: "May 2024 – Jan 2025"
+    description: |
+      What if your browser quietly hid the stuff you never wanted to see? I led a team of five at Samsung R&D to build exactly that: a machine-learning Chrome extension that reshapes web pages around each user's preferences.
+
+      We trained CNNs to classify images and NLP models to classify text, then tuned them until content filtering hit 95% accuracy across multiple preference profiles. JavaScript and the Chrome Extension APIs rewrote pages on the fly, cutting irrelevant content by 40%. It was my first time owning both the model and the product it lived in.
     photos: []
 
   - year: "2024"
     title: "Summer Intern"
-    company: "IIT Palakkad Technology IHub Foundation"
+    company: "IIT Palakkad"
     href: ""
-    dates: "May 2024"
-    description: "Contributed to technology innovation and R&D projects in collaboration with IIT Palakkad."
+    dates: "May – Jun 2024"
+    description: |
+      Cars that talk to each other need antennas in the right places, and finding those places by trial and error is slow. I spent the summer at IIT Palakkad researching how AI could do the searching instead.
+
+      I built machine-learning optimization models and simulation workflows that tested antenna positions for vehicular communication networks. It was a crash course in research: forming a hypothesis, simulating, being wrong, and trying again.
     photos: []
 
   - year: "2024"
-    title: "Ambassador"
+    title: "Beta Microsoft Learn Student Ambassador"
     company: "Microsoft"
     href: ""
-    dates: "Early 2024"
-    description: "Represented Microsoft technologies and engaged with the developer community."
+    dates: "Feb 2024 – Aug 2025"
+    description: |
+      My college didn't have a Microsoft Learn Student Ambassador community, so I became the first ambassador and started one. That meant workshops on Azure fundamentals, web development and cloud computing, plus cloud skills challenges to keep people coming back.
+
+      Over 18 months, 200+ students went through hands-on sessions and certification prep with me. Watching someone go from "what's a VM?" to passing their first Azure exam never got old.
     photos:
       - src: "/experience/microsoft1.jpg"
         alt: "Microsoft ambassador"

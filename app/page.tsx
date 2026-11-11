@@ -76,7 +76,9 @@ function Experience({ experience }: Pick<Content, "experience">) {
                     </h4>
                     {r.when && <span className="meta">{r.when}</span>}
                   </div>
-                  <p>{r.description}</p>
+                  {r.description.map((para) => (
+                    <p key={para}>{para}</p>
+                  ))}
                 </div>
                 {r.photos.length > 0 && (
                   <div className="photos">
