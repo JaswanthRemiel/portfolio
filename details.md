@@ -18,6 +18,25 @@ profile:
       href: "https://twitter.com/jaswanthremiel"
 
 projects:
+  - title: "lazyfill"
+    href: "https://github.com/JaswanthRemiel/lazyfill"
+    dates: "November 2026 - Present"
+    active: true
+    description: "A Chrome extension that fills job applications from your saved profile, tracks every application, and drafts answers to screening questions with your own AI key. Imports your resume, remembers answers, and runs entirely on your own Firebase project, with no central server."
+    technologies:
+      - "TypeScript"
+      - "React"
+      - "Vite"
+      - "Tailwind CSS"
+      - "Firebase"
+      - "Chrome Extension"
+    links:
+      - type: "Source"
+        href: "https://github.com/JaswanthRemiel/lazyfill"
+        icon: "Github"
+    image: "/projects/lazyfill.jpg"
+    video: "/videos/lazyfill.mp4"
+
   - title: "itsGOtime"
     href: "https://github.com/JaswanthRemiel/itsGOtime"
     dates: "November 2025 - Present"
