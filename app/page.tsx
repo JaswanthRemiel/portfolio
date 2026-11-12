@@ -12,6 +12,15 @@ function Ext({ href, children, className }: { href: string; children: React.Reac
   );
 }
 
+/** Small "opens elsewhere" arrow, drawn as a stroke so it matches the text weight. */
+function Arrow() {
+  return (
+    <svg className="arrow" viewBox="0 0 12 12" aria-hidden="true">
+      <path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" />
+    </svg>
+  );
+}
+
 // Projects: poster cards with the full description in small type.
 function Projects({ projects }: Pick<Content, "projects">) {
   return (
@@ -47,7 +56,8 @@ function Projects({ projects }: Pick<Content, "projects">) {
               <span className="links">
                 {p.links.map((l) => (
                   <Ext key={l.label + l.href} href={l.href}>
-                    {l.label} ↗
+                    {l.label}
+                    <Arrow />
                   </Ext>
                 ))}
               </span>
@@ -111,7 +121,8 @@ function Blog({ posts }: Pick<Content, "posts">) {
               <div className="card-foot">
                 <time className="meta">{p.date}</time>
                 <span className="meta" aria-hidden="true">
-                  Read ↗
+                  Read
+                  <Arrow />
                 </span>
               </div>
             </div>

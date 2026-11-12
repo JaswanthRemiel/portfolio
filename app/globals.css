@@ -387,6 +387,26 @@ a.card {
   font-size: 14px;
 }
 
+/* External-link arrow: sits on the text's x-height and nudges up-right on hover. */
+.arrow {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  margin-left: 3px;
+  vertical-align: -0.06em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease;
+}
+
+a:hover .arrow,
+.card:hover .arrow {
+  transform: translate(1.5px, -1.5px);
+}
+
 .card-foot a {
   text-decoration-color: transparent;
 }
