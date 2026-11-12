@@ -5,7 +5,7 @@
 
 profile:
   name: "Remiel"
-  title: "Remiel — Software Engineer"
+  title: "Remiel, Software Engineer"
   description: "Software engineer building things for the web. Design-obsessed, full-stack, dabbling in ML."
   email: "work.remiel@gmail.com"
   resume: "https://drive.google.com/file/d/1hOtzjtt34a7LyY5NpjGxLxstWhnO4DXI/view"
@@ -81,26 +81,26 @@ projects:
     image: "/projects/trackcode.jpg"
     video: "/videos/trackcode.mp4"
 
-  - title: "NoteOS"
-    href: "https://github.com/JaswanthRemiel/NoteOS"
-    dates: "Sep 2024 - Feb 2025"
-    active: true
-    description: "a Notion-like productivity platform featuring draggable content blocks, inline editing, and persistent document storage powered by Appwrite for authentication, file uploads, and real-time state management. "
-    technologies:
-      - "Next.js"
-      - "Typescript"
-      - "Appwrite"
-      - "OMDB API"
-      - "Shadcn UI"
-    links:
-      - type: "Demo"
-        href: "https://notes.remiel.in/"
-        icon: "Globe"
-      - type: "Source"
-        href: "https://github.com/JaswanthRemiel/NoteOS"
-        icon: "Github"
-    image: "/projects/note.jpg"
-    video: "/videos/note.mp4"
+  # - title: "NoteOS"
+  #   href: "https://github.com/JaswanthRemiel/NoteOS"
+  #   dates: "Sep 2024 - Feb 2025"
+  #   active: true
+  #   description: "a Notion-like productivity platform featuring draggable content blocks, inline editing, and persistent document storage powered by Appwrite for authentication, file uploads, and real-time state management. "
+  #   technologies:
+  #     - "Next.js"
+  #     - "Typescript"
+  #     - "Appwrite"
+  #     - "OMDB API"
+  #     - "Shadcn UI"
+  #   links:
+  #     - type: "Demo"
+  #       href: "https://notes.remiel.in/"
+  #       icon: "Globe"
+  #     - type: "Source"
+  #       href: "https://github.com/JaswanthRemiel/NoteOS"
+  #       icon: "Github"
+  #   image: "/projects/note.jpg"
+  #   video: "/videos/note.mp4"
 
   - title: "MediaBar"
     href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
