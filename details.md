@@ -31,9 +31,12 @@ projects:
       - "Firebase"
       - "Chrome Extension"
     links:
+      - type: "Demo"
+        href: "https://lazyfill.remiel.in"
+        icon: "Github"
       - type: "Source"
         href: "https://github.com/JaswanthRemiel/lazyfill"
-        icon: "Github"
+        icon: "Github"    
     image: "/projects/lazyfill.jpg"
     video: "/videos/lazyfill.mp4"
 

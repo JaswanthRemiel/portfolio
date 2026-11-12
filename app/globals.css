@@ -72,7 +72,7 @@ main {
    so the intro uses the full width instead of crowding the left. */
 .copy {
   display: grid;
-  grid-template-columns: minmax(0, 620px) auto;
+  grid-template-columns: minmax(0, 600px) auto;
   justify-content: space-between;
   align-items: end;
   column-gap: 64px;
@@ -80,14 +80,24 @@ main {
 }
 
 .bio {
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
-/* A ~75-character measure, with line breaks balanced so no paragraph ends on a
-   lone word or two. */
+/* A ~72-character measure. `balance` evens out the line lengths within each
+   paragraph, so the right edge reads as a clean block instead of a ragged one
+   (and no line ends on a lone opening word like "I'm"). The paragraph gap is
+   about half a line, so paragraphs read as one bio rather than separate notes. */
 .bio p {
-  margin-bottom: 18px;
-  text-wrap: pretty;
+  margin-bottom: 14px;
+  text-wrap: balance;
+}
+
+/* On a phone the column is already narrow; balancing would pull short paragraphs
+   in from the edge, so just keep lone words off the last line. */
+@media (max-width: 720px) {
+  .bio p {
+    text-wrap: pretty;
+  }
 }
 
 .bio p:last-child {
