@@ -48,6 +48,9 @@ projects:
     technologies:
       - "TypeScript"
     links:
+      - type: "Demo"
+        href: "https://remimem.remiel.in"
+        icon: "Github"
       - type: "Source"
         href: "https://github.com/jaswanthremiel/remimem"
         icon: "Github"
