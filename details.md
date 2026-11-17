@@ -40,6 +40,20 @@ projects:
     image: "/projects/lazyfill.jpg"
     video: "/videos/lazyfill.mp4"
 
+  - title: "remimem"
+    href: "https://github.com/jaswanthremiel/remimem"
+    dates: "November 2026 - Present"
+    active: true
+    description: "Codebase memory for coding agents. Gives your agent a persistent, searchable understanding of your repo, so it stops re-reading files and starts from what it already knows."
+    technologies:
+      - "TypeScript"
+    links:
+      - type: "Source"
+        href: "https://github.com/jaswanthremiel/remimem"
+        icon: "Github"
+    image: "/projects/remimem.jpg"
+    video: "/videos/remimem.mp4"
+
   - title: "itsGOtime"
     href: "https://github.com/JaswanthRemiel/itsGOtime"
     dates: "November 2025 - Present"
