@@ -119,21 +119,21 @@ projects:
   #   image: "/projects/note.jpg"
   #   video: "/videos/note.mp4"
 
-  - title: "MediaBar"
-    href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
-    dates: "Jan 2026 - Present"
-    active: true
-    description: "Control syste-wide media playback from your VS Code status bar. Works with Spotify, browsers, and any Windows media app."
-    technologies:
-      - "VScode"
-      - "TypeScript"
-      - "HTML/CSS"
-    links:
-      - type: "Website"
-        href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
-        icon: "Globe"
-    image: "/projects/vsmediabar.jpg"
-    video: "/videos/vsmediabar.mp4"
+  # - title: "MediaBar"
+  #   href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
+  #   dates: "Jan 2026 - Present"
+  #   active: true
+  #   description: "Control syste-wide media playback from your VS Code status bar. Works with Spotify, browsers, and any Windows media app."
+  #   technologies:
+  #     - "VScode"
+  #     - "TypeScript"
+  #     - "HTML/CSS"
+  #   links:
+  #     - type: "Website"
+  #       href: "https://marketplace.visualstudio.com/items?itemName=jaswanthremiel.mediabar"
+  #       icon: "Globe"
+  #   image: "/projects/vsmediabar.jpg"
+  #   video: "/videos/vsmediabar.mp4"
 
 
 
